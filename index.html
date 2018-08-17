@@ -25,23 +25,44 @@
         TODO 7
         Make an <li> for each movie in watchList
         -->
+        <li v-for="movie in watchlistItems">
+          {{ movie.title }}
+        </li>
       </ul>
     </section>
 
+
     <!--
-    TODO 1
+    TODO 1 (done)
     Add another section, very similar to the one above, for the user to browse movies
     Give it an id of "section-browse"
     It should display "Browse Movies" in large text
     It should contain an empty unordered list
     -->
+    <section id="section-browse">
+      <header>
+        <h2>Browse Movies</h2>
+        <hr/>
+      </header>
+
+      <ul>
+        <li v-for="movie in browseItems">
+          <p>{{ movie.title }}</p>
+          <button @click="addToWatchlist(movie)">Add to watchlist</button>
+        </li>
+      </ul>
+      <a v-if="!loading" href="#" @click.prevent="discoverMovies">Load more</a>
+      <p v-if="loading"> Loading...</p>
+      <p v-if="error">{{error }}</p>
+    </section>
+
     <!--
-    TODO 3
+    TODO 3 (done)
     Inside the unordered list in your new "section-browse",
     use a v-for pattern to make list items for each movie in browseItems
     -->
     <!--
-    TODO 4
+    TODO 4 (done)
     Inside each of those list items, add a button that
     says "Add to Watchlist"
     -->
