@@ -42,7 +42,7 @@
         -->
         <form>
           <input type="text" v-model="searchTerm" />
-          <input type="submit" value="search" @click="searchMovies(searchTerm)" />
+          <input type="submit" value="search" @click.prevent="searchMovies(searchTerm)" />
         </form>
       </header>
 
