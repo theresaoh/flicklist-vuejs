@@ -14,6 +14,7 @@ var flicklistView = new Vue({
 			watchlistItems: [],
       browseItems: [],
       // TODO 8B
+      searchTerm: null,
 		};
 	},
 	methods: {
@@ -44,10 +45,24 @@ var flicklistView = new Vue({
       // TODO 9
       // implement this function as described in the comment above
       // you can use the body of discoverMovies as a jumping off point
+      fetch(`${api.root}/search/movie?api_key=${api.token}&query=${searchTerm}`)
+      .then(resp => resp.ok ? resp.json() : Promise.reject(resp))
+      .then((response) => {
+        console.log("We got a response from The Movie DB!");
+        console.log(response);
+
+        this.browseItems = response.results;
+
+      });
+
     },
 		addToWatchlist: function(movie) {
 			this.watchlistItems.push(movie);
-		},
+    },
+    alreadyOnWatchlist: function(movie) {
+      // returns true if movie is already in this.watchlistItems
+      return this.watchlistItems.includes(movie);
+    },
 	},
 	mounted: function () {
 		this.discoverMovies();

@@ -23,8 +23,8 @@
 
       <ul>
           <!-- TODO 3 the li tag should have an "item-watchlist" class -->
-          <li v-for="title in watchlistItems">
-          <p>{{ title }}</p>
+          <li v-for="movie in watchlistItems">
+          <p class="item-watchlist">{{ movie.title }}</p>
         </li>
       </ul>
     </section>
@@ -37,6 +37,10 @@
           TODO 6
           add a <form> here for users to search for movies by title
         -->
+        <form>
+          <input type="text" v-model="searchTerm">
+          <input type="submit" @click.prevent="searchMovies(searchTerm)">
+        </form>
       </header>
 
       <ul>
@@ -49,7 +53,7 @@
             The button should be disabled if this movie
             is already in the user's watchlist
           -->
-          <button @click="addToWatchlist(movie)">
+          <button @click="addToWatchlist(movie)" :disabled="alreadyOnWatchlist(movie)">
             Add to Watchlist
           </button>
 
@@ -58,6 +62,7 @@
             Create a paragraph containing the movie object's
             .overview value
           -->
+          <p>{{ movie.overview }}</p>
         </li>
       </ul>
     </section>
