@@ -48,3 +48,26 @@ section {
 	padding: 2%;
 }
 
+#browse-carousel {
+	max-width: 300px;
+	margin: auto;
+}
+
+.carousel-item {
+	display: none;
+}
+.carousel-item.active {
+	visibility: visible;
+}
+.carousel-inner {
+	padding: 0;
+}
+
+img {
+	height: auto;
+	width: 100%;
+}
+
+.add-to-watchlist {
+	width: 100%;
+}

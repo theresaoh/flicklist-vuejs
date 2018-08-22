@@ -1,7 +1,7 @@
 
 var api = {
   root: "https://api.themoviedb.org/3",
-  token: "" // TODO 0 add your api key
+  token: "f6bd21e39046f6a08df40d82ad8cffd3" // TODO 0 add your api key
 }
 
 var flicklistView = new Vue({
@@ -11,15 +11,24 @@ var flicklistView = new Vue({
 			watchlistItems: [],
       browseItems: [],
       searchTerm: null,
-      // TODO 3.1, 3.2
+      activeIx: 0,
+      // TODO 3.1, 3.2 (done)
       // Add a property for the current active movie index, and a property
       // for a list of image urls (which you'll remove in a later step)
 		};
-	},
+  },
+  computed: {
+    activeMovie: function() {
+      return this.browseItems[this.activeIx];
+    },
+  },
 	methods: {
 		discoverMovies: function (keywords) {
+      const url = keywords ?
+        `${api.root}/discover/movie?api_key=${api.token}&with_keywords=${keywords}` :
+        `${api.root}/discover/movie?api_key=${api.token}`;
 
-			fetch(`${api.root}/discover/movie?api_key=${api.token}&with_keywords=${keywords}`)
+			fetch(url)
 					.then(resp => resp.ok ? resp.json() : Promise.reject(resp))
 					.then((response) => {
 						console.log("We got a response from The Movie DB!");
@@ -53,6 +62,20 @@ var flicklistView = new Vue({
     },
     removeFromWatchlist: function(movie) {
       this.watchlistItems = this.watchlistItems.filter(m => m !== movie);
+    },
+    prevImg: function() {
+      if(this.activeIx == 0) {
+        this.activeIx = this.browseItems.length - 1;
+      } else {
+        this.activeIx -= 1;
+      }
+    },
+    nextImg: function() {
+      if (this.activeIx == this.browseItems.length - 1) {
+        this.activeIx = 0;
+      } else {
+        this.activeIx += 1;
+      }
     },
 	},
 	mounted: function () {
