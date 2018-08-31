@@ -1,7 +1,7 @@
 
 var api = {
   root: "https://api.themoviedb.org/3",
-  token: "TODO 0"
+  token: "f6bd21e39046f6a08df40d82ad8cffd3"
 }
 
 var flicklistView = new Vue({
@@ -17,6 +17,9 @@ var flicklistView = new Vue({
 		};
 	},
 	methods: {
+    removeFromWatchlist: function(movie) {
+      this.watchlistItems = this.watchlistItems.filter(m => m !== movie);
+    },
 		discoverMovies: function () {
 			/**
 			 * Makes an AJAX request to themoviedb.org, asking for some movies
@@ -50,13 +53,12 @@ var flicklistView = new Vue({
         this.browseItems = response.results;
 
       });
-
     },
     posterUrl: function(movie) {
       // TODO 4b
       // implement this function
-
-      return "http://images5.fanpop.com/image/photos/25100000/movie-poster-rapunzel-and-eugene-25184488-300-450.jpg"
+      return `http://image.tmdb.org/t/p/w300/${movie.poster_path}`;
+      return 'http://image.tmdb.org/t/p/w300/' + movie.poster_path;
     },
 		addToWatchlist: function(movie) {
 			this.watchlistItems.push(movie);
