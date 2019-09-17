@@ -2,33 +2,17 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-
-  <!--
-  TODO 3b
-  add meta viewport tag
-  -->
-
+  <meta name="viewport">
   <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-
-  <!--
-    TODO 2a
-    add link to Bootstrap CDN
-  -->
-
   <link rel="stylesheet" href="css/styles.css" />
 
   <title>FlickList</title>
 </head>
 <body>
   <div id="mount-target">
-    <!--
-      TODO 2b
-      give the header a class of "jumbotron"
-      give the inner paragraph a class of "text-muted"
-    -->
-    <header>
+    <header class="jumbotron">
       <h1>FlickList</h1>
-      <p>Keep a list of all the movies you've been meaning to watch.</p>
+      <p class="text-muted">Keep a list of all the movies you've been meaning to watch.</p>
     </header>
 
     <div class="main-content">
@@ -49,12 +33,8 @@
           <h2>My Watchlist</h2>
           <hr/>
         </header>
-
-        <!--
-          TODO 2f
-          Give this list a class of "list-inline"
-        -->
-        <ul>
+        
+        <ul class="list-inline">
           <li
             v-for="movie in watchlistItems"
             class="item-watchlist"
@@ -64,6 +44,8 @@
               re-implement the li as a bootstrap panel with a heading and a body
             -->
             <p>{{ movie.title }}</p>
+
+            <input type="button" value="I watched it" @click="removeFromWatchlist()" >
             <!--
               TODO 1
               add an "I watched it" button here

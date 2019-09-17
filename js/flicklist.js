@@ -1,7 +1,7 @@
 
 var api = {
   root: "https://api.themoviedb.org/3",
-  token: "TODO 0"
+  token: "f6bd21e39046f6a08df40d82ad8cffd3"
 }
 
 var flicklistView = new Vue({
