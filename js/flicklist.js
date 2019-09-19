@@ -32,7 +32,10 @@ var flicklistView = new Vue({
 						this.browseItems = response.results;
 
 					});
-    },
+	},
+	removeFromWatchlist: function(movie){
+		this.watchlistItems = this.watchlistItems.filter(x => x !== movie);
+	},
     searchMovies: function(searchTerm) {
       // Make an AJAX request to the /search/movie endpoint
       // of the API, using the query string that was passed in.
@@ -53,10 +56,7 @@ var flicklistView = new Vue({
 
     },
     posterUrl: function(movie) {
-      // TODO 4b
-      // implement this function
-
-      return "http://images5.fanpop.com/image/photos/25100000/movie-poster-rapunzel-and-eugene-25184488-300-450.jpg"
+      return "http://image.tmdb.org/t/p/w300//" + movie.poster_path;
     },
 		addToWatchlist: function(movie) {
 			this.watchlistItems.push(movie);
